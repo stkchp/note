@@ -11,6 +11,8 @@ HDMI/audioについても4.19向けにパッチが投げられており、適用
 "mervel,dove-framebuffer"に該当するドキュメントはどこにあるの？というレビューから先の
 返信が無いため、取り込まれるか微妙。
 
+kernelさえ動けば後は何とでもなるので、kernel系の情報を集める予定。
+
 ## 情報源
 
 - [armada5xx (1st gen. cubox)](http://forum.solid-run.com/viewforum.php?f=25&sid=8984fe627cd6e883ba4c074959b8e25a)
