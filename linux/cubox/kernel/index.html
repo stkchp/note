@@ -13,7 +13,7 @@
         <meta name="description" content="技術系のメモ">
       
       
-        <link rel="canonical" href="https://note.tkch.net/linux/hyper-v/">
+        <link rel="canonical" href="https://note.tkch.net/linux/cubox/kernel/">
       
       
         <meta name="author" content="stkchp">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
     
     
       
-        <title>linux on hyper-v - note</title>
+        <title>kernel - note</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.22915126.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="../../assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
     
     
   </head>
@@ -104,7 +104,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="../../#linux-on-hyper-v" tabindex="1" class="md-skip">
+      <a href="../../../#kernel" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -130,7 +130,7 @@
                 note
               </span>
               <span class="md-header-nav__topic">
-                linux on hyper-v
+                kernel
               </span>
             
           
@@ -247,7 +247,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="目次" class="md-nav__link">
+    <a href="../../.." title="目次" class="md-nav__link">
       目次
     </a>
   </li>
@@ -278,10 +278,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
     
     <label class="md-nav__link" for="nav-2-1">
       Cubox
@@ -299,49 +301,11 @@
 
 
   <li class="md-nav__item">
-    <a href="../cubox/" title="linux on cubox(1st gen)" class="md-nav__link">
+    <a href="../" title="linux on cubox(1st gen)" class="md-nav__link">
       linux on cubox(1st gen)
     </a>
   </li>
 
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../cubox/kernel/" title="kernel" class="md-nav__link">
-      kernel
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
-    
-    <label class="md-nav__link" for="nav-2-2">
-      Hyper v
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-2-2">
-        Hyper v
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
         
           
           
@@ -357,10 +321,75 @@
       
     
     
-    <a href="./" title="linux on hyper-v" class="md-nav__link md-nav__link--active">
-      linux on hyper-v
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        kernel
+      </label>
+    
+    <a href="./" title="kernel" class="md-nav__link md-nav__link--active">
+      kernel
     </a>
     
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kernel_1" title="kernelのコンパイル" class="md-nav__link">
+    kernelのコンパイル
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Hyper v
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        Hyper v
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../hyper-v/" title="linux on hyper-v" class="md-nav__link">
+      linux on hyper-v
+    </a>
   </li>
 
         
@@ -391,6 +420,22 @@
     
   
   
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#kernel_1" title="kernelのコンパイル" class="md-nav__link">
+    kernelのコンパイル
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -401,13 +446,50 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/stkchp/note/edit/master/linux/hyper-v/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/stkchp/note/edit/master/linux/cubox/kernel.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="linux-on-hyper-v">linux on hyper-v<a class="headerlink" href="#linux-on-hyper-v" title="Permanent link">&para;</a></h1>
-<p>LinuxをHyper-V上で動かす際のメモ。</p>
-<p>Qiitaに投稿してみた<a href="https://qiita.com/stkchp/items/c13abb4b43f3572ec094">Hyper-VにGentoo Linuxをinstallする</a>の補足・追加もこちらでやる。
-(プログラミングに関する記事投稿の場所らしいので...)</p>
+                <h1 id="kernel">kernel<a class="headerlink" href="#kernel" title="Permanent link">&para;</a></h1>
+<p>HDMI/audioを使わないのであれば、公式kernelを使える。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>4.19系でもしかしたらHMDI系のサポートが入るかもしれない。</p>
+</div>
+<h2 id="kernel_1">kernelのコンパイル<a class="headerlink" href="#kernel_1" title="Permanent link">&para;</a></h2>
+<p>基本的な部分は同じ。</p>
+<div class="codehilite"><pre><span></span> $ make nconfig
+ $ make
+ $ make modules_install
+</pre></div>
+
+
+<p>armのkernelはdevice-treeをロードすることで特定の機器のmodule類を初期化することができる。
+cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする形式がとられていたので踏襲する。</p>
+<div class="codehilite"><pre><span></span> $ arch/arm/boot/
+ $ cat zImage dts/dove-cubox.dtb &gt; zImage.cubox
+ $ mkimage -A arm -O linux -C none -T kernel -a 0x00008000 -e 0x00008000 -n &#39;linux-cubox&#39; -d zImage.cubox uImage
+</pre></div>
+
+
+<p>出来上がったuImageをu-bootで読み出すようコピー、設定する</p>
+<div class="codehilite"><pre><span></span> # cp uImage /boot/
+</pre></div>
+
+
+<p>u-bootでロードする<code>boot.scr</code>を作成する</p>
+<p>``` tab="/boot/boot.txt(eSATA)"
+setenv bootargs 'console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4'
+ext2load ide 0:1 0x00200000 /uImage
+bootm</p>
+<div class="codehilite"><pre><span></span>``` tab=&quot;/boot/boot.txt(microSD)&quot;
+setenv bootargs &#39;console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4&#39;
+ext2load mmc 0:1 0x00200000 /uImage
+bootm
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span> # mkimage -A arm -O linux -T script -C none -n &quot;uBoot commands&quot; -d boot.txt boot.scr
+</pre></div>
                 
                   
                 
@@ -428,7 +510,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../cubox/kernel/" title="kernel" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../" title="linux on cubox(1st gen)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -437,11 +519,25 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                kernel
+                linux on cubox(1st gen)
               </span>
             </div>
           </a>
         
+        
+          <a href="../../hyper-v/" title="linux on hyper-v" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                linux on hyper-v
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
@@ -463,7 +559,7 @@
       
         
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
     
       <a href="https://github.com/stkchp" class="md-footer-social__link fa fa-github"></a>
     
@@ -478,9 +574,9 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application.583bbe55.js"></script>
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
       
-      <script>app.initialize({version:"1.0",url:{base:"../.."}})</script>
+      <script>app.initialize({version:"1.0",url:{base:"../../.."}})</script>
       
     
     

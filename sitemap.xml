@@ -11,6 +11,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://note.tkch.net/linux/cubox/kernel/</loc>
+     <lastmod>2018-08-10</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://note.tkch.net/linux/hyper-v/</loc>
      <lastmod>2018-08-10</lastmod>
      <changefreq>daily</changefreq>
