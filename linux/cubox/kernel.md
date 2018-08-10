@@ -30,19 +30,21 @@ cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする�
  # cp uImage /boot/
 ```
 
-u-bootでロードする`boot.scr`を作成する
+u-bootでロードする`boot.scr`を作成する。
 
-``` tab="/boot/boot.txt(eSATA)"
+``` text tab="/boot/boot.txt(eSATA)"
 setenv bootargs 'console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4'
 ext2load ide 0:1 0x00200000 /uImage
 bootm
 ```
 
-``` tab="/boot/boot.txt(microSD)"
+``` text tab="/boot/boot.txt(microSD)"
 setenv bootargs 'console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4'
 ext2load mmc 0:1 0x00200000 /uImage
 bootm
 ```
+
+`boot.txt` を `boot.scr`に変換する。
 
 ```
  # mkimage -A arm -O linux -T script -C none -n "uBoot commands" -d boot.txt boot.scr
