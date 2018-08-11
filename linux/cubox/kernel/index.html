@@ -475,7 +475,6 @@ cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする�
 
 <div class="admonition summary">
 <p class="admonition-title">/boot/boot.txt</p>
-</div>
 <div class="superfences-tabs">
 <input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
 <label for="__tab_1_0">eSATA</label>
@@ -489,6 +488,7 @@ bootm
 ext2load mmc 0:1 0x00200000 /uImage
 bootm
 </pre></div></div>
+</div>
 </div>
 <p><code>boot.txt</code> を <code>boot.scr</code>に変換する。</p>
 <div class="codehilite"><pre><span></span> # mkimage -A arm -O linux -T script -C none -n &quot;uBoot commands&quot; -d boot.txt boot.scr
