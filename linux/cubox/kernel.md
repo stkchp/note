@@ -32,17 +32,17 @@ cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする�
 
 u-bootでロードする`boot.scr`を作成する。
 !!! summary "/boot/boot.txt"
-``` text tab="eSATA"
-setenv bootargs 'console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4'
-ext2load ide 0:1 0x00200000 /uImage
-bootm
-```
-
-``` text tab="microSD"
-setenv bootargs 'console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4'
-ext2load mmc 0:1 0x00200000 /uImage
-bootm
-```
+    ``` text tab="eSATA"
+    setenv bootargs 'console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4'
+    ext2load ide 0:1 0x00200000 /uImage
+    bootm
+    ```
+    
+    ``` text tab="microSD"
+    setenv bootargs 'console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4'
+    ext2load mmc 0:1 0x00200000 /uImage
+    bootm
+    ```
 
 `boot.txt` を `boot.scr`に変換する。
 
