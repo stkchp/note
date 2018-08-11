@@ -19,7 +19,7 @@ armのkernelはdevice-treeをロードすることで特定の機器のmodule類
 cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする形式がとられていたので踏襲する。
 
 ```shell-session
- $ arch/arm/boot/
+ $ cd arch/arm/boot/
  $ cat zImage dts/dove-cubox.dtb > zImage.cubox
  $ mkimage -A arm -O linux -C none -T kernel -a 0x00008000 -e 0x00008000 -n 'linux-cubox' -d zImage.cubox uImage
 ```
