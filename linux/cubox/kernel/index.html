@@ -462,7 +462,6 @@
  $ make modules_install
 </pre></div>
 
-
 <p>armのkernelはdevice-treeをロードすることで特定の機器のmodule類を初期化することができる。
 cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする形式がとられていたので踏襲する。</p>
 <div class="codehilite"><pre><span></span> $ arch/arm/boot/
@@ -470,24 +469,27 @@ cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする�
  $ mkimage -A arm -O linux -C none -T kernel -a 0x00008000 -e 0x00008000 -n &#39;linux-cubox&#39; -d zImage.cubox uImage
 </pre></div>
 
-
 <p>出来上がったuImageをu-bootで読み出すようコピー、設定する</p>
 <div class="codehilite"><pre><span></span> # cp uImage /boot/
 </pre></div>
 
-
-<p>u-bootでロードする<code>boot.scr</code>を作成する。</p>
-<p>``` text tab="/boot/boot.txt(eSATA)"
-setenv bootargs 'console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4'
+<div class="admonition summary">
+<p class="admonition-title">/boot/boot.txt</p>
+</div>
+<div class="superfences-tabs">
+<input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
+<label for="__tab_1_0">eSATA</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span>setenv bootargs &#39;console=ttyS0,115200n8 root=/dev/sda3 rootwait rootfstype=ext4&#39;
 ext2load ide 0:1 0x00200000 /uImage
-bootm</p>
-<div class="codehilite"><pre><span></span>``` text tab=&quot;/boot/boot.txt(microSD)&quot;
-setenv bootargs &#39;console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4&#39;
+bootm
+</pre></div></div>
+<input name="__tabs_1" type="radio" id="__tab_1_1" />
+<label for="__tab_1_1">microSD</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span>setenv bootargs &#39;console=ttyS0,115200n8 root=/dev/mmcblk0p3 rootwait rootfstype=ext4&#39;
 ext2load mmc 0:1 0x00200000 /uImage
 bootm
-</pre></div>
-
-
+</pre></div></div>
+</div>
 <p><code>boot.txt</code> を <code>boot.scr</code>に変換する。</p>
 <div class="codehilite"><pre><span></span> # mkimage -A arm -O linux -T script -C none -n &quot;uBoot commands&quot; -d boot.txt boot.scr
 </pre></div>
