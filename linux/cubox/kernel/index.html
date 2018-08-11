@@ -340,8 +340,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kernel_1" title="kernelのコンパイル" class="md-nav__link">
-    kernelのコンパイル
+  <a href="#kernel-compile-install" title="kernel compile &amp; install" class="md-nav__link">
+    kernel compile &amp; install
   </a>
   
 </li>
@@ -424,8 +424,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kernel_1" title="kernelのコンパイル" class="md-nav__link">
-    kernelのコンパイル
+  <a href="#kernel-compile-install" title="kernel compile &amp; install" class="md-nav__link">
+    kernel compile &amp; install
   </a>
   
 </li>
@@ -455,22 +455,22 @@
 <p class="admonition-title">Note</p>
 <p>4.19系でもしかしたらHMDI系のサポートが入るかもしれない。</p>
 </div>
-<h2 id="kernel_1">kernelのコンパイル<a class="headerlink" href="#kernel_1" title="Permanent link">&para;</a></h2>
+<h2 id="kernel-compile-install">kernel compile &amp; install<a class="headerlink" href="#kernel-compile-install" title="Permanent link">&para;</a></h2>
 <p>基本的な部分は同じ。</p>
-<div class="codehilite"><pre><span></span> $ make nconfig
- $ make
- $ make modules_install
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> make nconfig
+<span class="gp"> $</span> make
+<span class="gp"> $</span> make modules_install
 </pre></div>
 
 <p>armのkernelはdevice-treeをロードすることで特定の機器のmodule類を初期化することができる。
 cuboxの場合はkernelの末尾にdevice-treeを引っ付けてロードする形式がとられていたので踏襲する。</p>
-<div class="codehilite"><pre><span></span> $ arch/arm/boot/
- $ cat zImage dts/dove-cubox.dtb &gt; zImage.cubox
- $ mkimage -A arm -O linux -C none -T kernel -a 0x00008000 -e 0x00008000 -n &#39;linux-cubox&#39; -d zImage.cubox uImage
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> arch/arm/boot/
+<span class="gp"> $</span> cat zImage dts/dove-cubox.dtb &gt; zImage.cubox
+<span class="gp"> $</span> mkimage -A arm -O linux -C none -T kernel -a 0x00008000 -e 0x00008000 -n <span class="s1">&#39;linux-cubox&#39;</span> -d zImage.cubox uImage
 </pre></div>
 
 <p>出来上がったuImageをu-bootで読み出すようコピー、設定する</p>
-<div class="codehilite"><pre><span></span> # cp uImage /boot/
+<div class="codehilite"><pre><span></span><span class="gp"> #</span> cp uImage /boot/
 </pre></div>
 
 <div class="admonition summary">
@@ -491,7 +491,7 @@ bootm
 </div>
 </div>
 <p><code>boot.txt</code> を <code>boot.scr</code>に変換する。</p>
-<div class="codehilite"><pre><span></span> # mkimage -A arm -O linux -T script -C none -n &quot;uBoot commands&quot; -d boot.txt boot.scr
+<div class="codehilite"><pre><span></span><span class="gp"> #</span> mkimage -A arm -O linux -T script -C none -n <span class="s2">&quot;uBoot commands&quot;</span> -d boot.txt boot.scr
 </pre></div>
                 
                   
