@@ -1,0 +1,1084 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="技術系のメモ">
+      
+      
+        <link rel="canonical" href="https://note.tkch.net/linux/cubox/u-boot/">
+      
+      
+        <meta name="author" content="stkchp">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0, mkdocs-material-3.0.3">
+    
+    
+      
+        <title>U-Boot - note</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2196f3">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
+    
+    
+      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+      
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="../../../#u-boot" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://note.tkch.net" title="note" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            
+              <span class="md-header-nav__topic">
+                note
+              </span>
+              <span class="md-header-nav__topic">
+                U-Boot
+              </span>
+            
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+            
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+          
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://github.com/stkchp/note/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      stkchp/note
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://note.tkch.net" title="note" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    note
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://github.com/stkchp/note/" title="Go to repository" class="md-source" data-md-source="github">
+    
+      <div class="md-source__icon">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <use xlink:href="#__github" width="24" height="24"></use>
+        </svg>
+      </div>
+    
+    <div class="md-source__repository">
+      stkchp/note
+    </div>
+  </a>
+
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="目次" class="md-nav__link">
+      目次
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      App
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        App
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../app/lftp/" title="lftp" class="md-nav__link">
+      lftp
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Linux
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Linux
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-1" type="checkbox" id="nav-3-1" checked>
+    
+    <label class="md-nav__link" for="nav-3-1">
+      Cubox
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-1">
+        Cubox
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="linux on cubox(1st gen)" class="md-nav__link">
+      linux on cubox(1st gen)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kernel/" title="kernel" class="md-nav__link">
+      kernel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        U-Boot
+      </label>
+    
+    <a href="./" title="U-Boot" class="md-nav__link md-nav__link--active">
+      U-Boot
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_1" title="実際にU-Bootは何をするのか" class="md-nav__link">
+    実際にU-Bootは何をするのか
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cubox" title="CuBoxのブートプロセス" class="md-nav__link">
+    CuBoxのブートプロセス
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_2" title="公式U-Bootについて" class="md-nav__link">
+    公式U-Bootについて
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solidrun" title="SolidRun社公開イメージについて" class="md-nav__link">
+    SolidRun社公開イメージについて
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="バイナリバージョン" class="md-nav__link">
+    バイナリバージョン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="ファイル情報" class="md-nav__link">
+    ファイル情報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_3" title="U-Bootを自前でビルド" class="md-nav__link">
+    U-Bootを自前でビルド
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="公式より引用" class="md-nav__link">
+    公式より引用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="やってみる" class="md-nav__link">
+    やってみる
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="クロスコンパイラ" class="md-nav__link">
+    クロスコンパイラ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="手順通りにやってみる" class="md-nav__link">
+    手順通りにやってみる
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config" title="config" class="md-nav__link">
+    config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" title="make" class="md-nav__link">
+    make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="出力例" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spi" title="SPIフラッシュへの書き込み方" class="md-nav__link">
+    SPIフラッシュへの書き込み方
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spilinux" title="SPIフラッシュへの書き込み方(Linux)" class="md-nav__link">
+    SPIフラッシュへの書き込み方(Linux)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="情報源" class="md-nav__link">
+    情報源
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-2" type="checkbox" id="nav-3-2">
+    
+    <label class="md-nav__link" for="nav-3-2">
+      Hyper v
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-2">
+        Hyper v
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../hyper-v/" title="linux on hyper-v" class="md-nav__link">
+      linux on hyper-v
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_1" title="実際にU-Bootは何をするのか" class="md-nav__link">
+    実際にU-Bootは何をするのか
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cubox" title="CuBoxのブートプロセス" class="md-nav__link">
+    CuBoxのブートプロセス
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_2" title="公式U-Bootについて" class="md-nav__link">
+    公式U-Bootについて
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solidrun" title="SolidRun社公開イメージについて" class="md-nav__link">
+    SolidRun社公開イメージについて
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" title="バイナリバージョン" class="md-nav__link">
+    バイナリバージョン
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" title="ファイル情報" class="md-nav__link">
+    ファイル情報
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#u-boot_3" title="U-Bootを自前でビルド" class="md-nav__link">
+    U-Bootを自前でビルド
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" title="公式より引用" class="md-nav__link">
+    公式より引用
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" title="やってみる" class="md-nav__link">
+    やってみる
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" title="クロスコンパイラ" class="md-nav__link">
+    クロスコンパイラ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" title="手順通りにやってみる" class="md-nav__link">
+    手順通りにやってみる
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config" title="config" class="md-nav__link">
+    config
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make" title="make" class="md-nav__link">
+    make
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" title="出力例" class="md-nav__link">
+    出力例
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spi" title="SPIフラッシュへの書き込み方" class="md-nav__link">
+    SPIフラッシュへの書き込み方
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spilinux" title="SPIフラッシュへの書き込み方(Linux)" class="md-nav__link">
+    SPIフラッシュへの書き込み方(Linux)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" title="情報源" class="md-nav__link">
+    情報源
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/stkchp/note/edit/master/linux/cubox/u-boot.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="u-boot">U-Boot<a class="headerlink" href="#u-boot" title="Permanent link">&para;</a></h1>
+<p>公式系のWikiの中で拾えるものを拾ってメモしておく。</p>
+<h2 id="u-boot_1">実際にU-Bootは何をするのか<a class="headerlink" href="#u-boot_1" title="Permanent link">&para;</a></h2>
+<p>kernelをロードするブートローダ。どのデバイスにOSがinstallされているのか検索してkernelをロードする。</p>
+<p>ext2/ext3やFAT、NFS、TFTPをサポートする。
+CuBoxは内部フラッシュやmicroSD、eSATA、上のUSBポート、ネットワークかシリアル経由でのbootが可能。</p>
+<div class="admonition caution">
+<p class="admonition-title">GPTについて</p>
+<p>デフォルトのブートローダーはGPTを理解することができない。</p>
+</div>
+<h2 id="cubox">CuBoxのブートプロセス<a class="headerlink" href="#cubox" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title"><code>archive.org</code>から拾ってきたWikiの和訳</p>
+<p>ブートプロセスの詳細は以下の通り。</p>
+<ol>
+<li>電源ONまたはシステムリセット</li>
+<li>メインプロセッサは、内部ユニットとすべてのオンボード周辺機器のHWリセットを実施</li>
+<li>メインプロセッサは、チップ内部のROMファームウェアを実行(この工程のチップは上書き不可)</li>
+<li>ROMファームウェアはバックパネルにある小さいリセットボタンの状態を読み取る<ol>
+<li>押されている場合、X-modemプロトコル(115200bps 8N1)で送られてきたイメージからbootする</li>
+<li>押されていない場合、SPIフラッシュからイメージをロードしてbootする</li>
+</ol>
+</li>
+</ol>
+<p>X-modemを使ったブートプロセスを使えば、たとえSPIフラッシュがイカれていても、CuBoxをリカバーできる</p>
+</div>
+<p>上記の中の「イメージ」と呼ばれるものが"U-Boot"にあたる。</p>
+<p>手順さえ分かっていればリカバリー可能。文鎮化は避けられる。
+実際に実施した方の記事に以下がある。</p>
+<ul>
+<li><a href="http://www.thx-design.net/blog/?p=8283">SolidRun CuBox を使ってみる（その7） | 真・死して屍拾う者無し</a></li>
+</ul>
+<h2 id="u-boot_2">公式U-Bootについて<a class="headerlink" href="#u-boot_2" title="Permanent link">&para;</a></h2>
+<p>公式U-Bootへパッチを投げる作業をSolidRun社員がやっていたが、以下の理由から頓挫している。</p>
+<ul>
+<li>Marvell Dove系のデバイスが少なく、メインライン側のやる気が出ない</li>
+</ul>
+<p>Mervellの</p>
+<h2 id="solidrun">SolidRun社公開イメージについて<a class="headerlink" href="#solidrun" title="Permanent link">&para;</a></h2>
+<p>以下のInternet Archiveサイトから拾うことが可能。</p>
+<ul>
+<li><a href="https://web.archive.org/web/20140109174216/http://download.solid-run.com:80/pub/solidrun/cubox/u-boot/2009.08_5.4.4_SR1/">CuBox U-Boot - Internet Archive</a></li>
+</ul>
+<h3 id="_1">バイナリバージョン<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>自分のCuBoxに入っているU-Bootのバイナリを見ると、以下のバージョン。</p>
+<div class="codehilite"><pre><span></span>U-Boot 2009.08 (Jan 15 2012 - 00:43:32) Marvell version: 5.4.4 NQ
+</pre></div>
+
+<p>archive.orgに落ちているU-BootのImageは以下。</p>
+<div class="codehilite"><pre><span></span>U-Boot 2009.08-dirty (Aug 06 2013 - 19:36:08) Marvell version: 5.4.4 NQ SR1
+</pre></div>
+
+<h3 id="_2">ファイル情報<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p><code>2013/08/06</code>公開のimageについての情報は以下の通り。</p>
+<div class="admonition info">
+<p class="admonition-title">md5sum</p>
+<div class="codehilite"><pre><span></span>6b19fbc89b1a8ac452980c9f798eeab1  u-boot-cubox_hynix_cubox_1GB_uart.bin
+40a2cc3ff5af6207d6eddfb42bc8c63c  u-boot-cubox_hynix_cubox_2GB_uart.bin
+b5dc1ffe9bea1edb8274a87711139191  u-boot-cubox_hynix_cubox_unified_spi.bin
+</pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">ls -l</p>
+<div class="codehilite"><pre><span></span>-rw-r--r-- 1 stkchp stkchp 339464 u-boot-cubox_hynix_cubox_1GB_uart.bin
+-rw-r--r-- 1 stkchp stkchp 339464 u-boot-cubox_hynix_cubox_2GB_uart.bin
+-rw-r--r-- 1 stkchp stkchp 340488 u-boot-cubox_hynix_cubox_unified_spi.bin
+</pre></div>
+
+</div>
+<h2 id="u-boot_3">U-Bootを自前でビルド<a class="headerlink" href="#u-boot_3" title="Permanent link">&para;</a></h2>
+<h3 id="_3">公式より引用<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>ソースコードは<a href="https://github.com/rabeeh/u-boot">https://github.com/rabeeh/u-boot</a>を利用する。</p>
+<p>以下の手順でビルドする。</p>
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>&lt;path to your favorite ARM cross compiler&gt;
+<span class="gp"> $</span> <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm
+<span class="gp"> $</span> make cubox_config <span class="nv">BOOTROM</span><span class="o">=</span><span class="m">1</span> <span class="nv">SPIBOOT</span><span class="o">=</span><span class="m">1</span> <span class="nv">DRAM</span><span class="o">=</span>HYNIX_CUBOX <span class="nv">NAND</span><span class="o">=</span><span class="m">0</span>
+<span class="gp"> $</span> make
+</pre></div>
+
+<p>3つ目の手順のところで以下の出力を得るはず。</p>
+<div class="codehilite"><pre><span></span>Configuring for mv_dove board...
+ * Configured for 88AP510
+ * Configured for CuBox
+ * HYNIX DDR-3 CuBox Support
+ * With USB support
+ * Boot from SPI support
+ * BOOTROM support
+</pre></div>
+
+<p>以下の2つのバイナリを得ることができる。</p>
+<ul>
+<li>u-boot-cubox_hynix_cubox_spi.bin (SPIフラッシュ書き込み用)</li>
+<li>u-boot-cubox_hynix_cubox_uart.bin (SPIフラッシュがイカれたとき用)</li>
+</ul>
+<h3 id="_4">やってみる<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="_5">クロスコンパイラ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>2013年頃はgccは4系だったので、それを使ってコンパイルする。ホストは<code>x86_64</code>。
+以下のURL先のバイナリを使用(<code>gcc-linaro-4.9.4-2017.01-x86_64_arm-linux-gnueabihf.tar.xz</code>)</p>
+<ul>
+<li><a href="https://releases.linaro.org/components/toolchain/binaries/4.9-2017.01/arm-linux-gnueabihf/">Linaro Releases</a></li>
+</ul>
+<p>新しいバージョンのgccでも、<code>-std=gnu89</code>をCFLAGSに追加してやればコンパイル可能なはず。</p>
+<p>パスを通しておく。</p>
+<h4 id="_6">手順通りにやってみる<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h5 id="config">config<a class="headerlink" href="#config" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-
+<span class="gp"> $</span> <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm
+<span class="gp"> $</span> make cubox_config <span class="nv">BOOTROM</span><span class="o">=</span><span class="m">1</span> <span class="nv">SPIBOOT</span><span class="o">=</span><span class="m">1</span> <span class="nv">DRAM</span><span class="o">=</span>HYNIX_CUBOX <span class="nv">NAND</span><span class="o">=</span><span class="m">0</span>
+</pre></div>
+
+<div class="codehilite"><pre><span></span>Configuring for mv_dove board...
+  * Configured for 88AP510
+  * Configured for CuBox
+  * HYNIX DDR-3 CuBox Support
+  * With USB support
+  * Boot from SPI support
+  * BOOTROM support
+</pre></div>
+
+<p>手順通りの出力が得られる。</p>
+<h5 id="make">make<a class="headerlink" href="#make" title="Permanent link">&para;</a></h5>
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> make
+</pre></div>
+
+<p>特にエラーなし。手順と違い、以下のファイルが得られる。</p>
+<ul>
+<li>u-boot-cubox_hynix_cubox_1GB_uart.bin (CuBox用)</li>
+<li>u-boot-cubox_hynix_cubox_2GB_uart.bin (CuBox Pro用)</li>
+<li>u-boot-cubox_hynix_cubox_unified_spi.bin (CuBox/CuBox Pro両用)</li>
+</ul>
+<h5 id="_7">出力例<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h5>
+<p>コンパイル日時等が入るので、md5sumの時刻が変わってくる。</p>
+<div class="codehilite"><pre><span></span>U-Boot 2009.08 (Aug 15 2018 - 00:52:02) Marvell version: 5.4.4 NQ SR1
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">md5sum</p>
+<div class="codehilite"><pre><span></span>a6995eefefd8c8eef8332fea24099823  u-boot-cubox_hynix_cubox_1GB_uart.bin
+0ce0752e466adcc38a4186169944883c  u-boot-cubox_hynix_cubox_2GB_uart.bin
+23c9be876277d4f50209a0ae2acbdd4c  u-boot-cubox_hynix_cubox_unified_spi.bin
+</pre></div>
+
+</div>
+<div class="admonition info">
+<p class="admonition-title">ls -l</p>
+<div class="codehilite"><pre><span></span>-rw-r--r-- 1 stkchp stkchp 339392 u-boot-cubox_hynix_cubox_1GB_uart.bin
+-rw-r--r-- 1 stkchp stkchp 339392 u-boot-cubox_hynix_cubox_2GB_uart.bin
+-rw-r--r-- 1 stkchp stkchp 340416 u-boot-cubox_hynix_cubox_unified_spi.bin
+</pre></div>
+
+</div>
+<h2 id="spi">SPIフラッシュへの書き込み方<a class="headerlink" href="#spi" title="Permanent link">&para;</a></h2>
+<p>以下はFATでフォーマットされたmicroSDに入っているイメージを書き込む例。公式Wikiのarchiveをほぼコピー。</p>
+<div class="admonition summary">
+<p class="admonition-title">microSD -&gt; memory</p>
+<div class="codehilite"><pre><span></span>set loadaddr 0x02000000
+mmcinfo
+fatload mmc 0:1 $loadaddr /u-boot-spi.bin
+</pre></div>
+
+</div>
+<div class="admonition summary">
+<p class="admonition-title">memory -&gt; internal flash</p>
+<div class="codehilite"><pre><span></span>set size 0xc0000
+sf protect off
+sf erase 0 $size
+sf erase $size 0x10000
+sf write $loadaddr 0 $filesize
+sf protect on
+</pre></div>
+
+<div class="admonition caution">
+<p class="admonition-title">注意</p>
+<p>環境変数を保持したい場合は、2つ目の<code>erase</code>コマンドは実行しないこと。
+環境変数はU-Bootのプロンプト上で<code>printenv</code>することで表示が可能。
+環境変数を<code>setenv</code>で変更した後は<code>saveenv</code>SPIフラッシュに保存することが可能。</p>
+</div>
+</div>
+<h2 id="spilinux">SPIフラッシュへの書き込み方(Linux)<a class="headerlink" href="#spilinux" title="Permanent link">&para;</a></h2>
+<p>Linux上だと<code>/dev/mtd0</code>にSPIフラッシュが見えている。<code>mtd-utils</code>を使って書き込み等が可能。</p>
+<div class="admonition summary">
+<p class="admonition-title">SPIフラッシュ 情報表示</p>
+<div class="codehilite"><pre><span></span><span class="gp">#</span> mtdinfo /dev/mtd0
+<span class="go">mtd0</span>
+<span class="go">Name:                           spi0.0</span>
+<span class="go">Type:                           nor</span>
+<span class="go">Eraseblock size:                65536 bytes, 64.0 KiB</span>
+<span class="go">Amount of eraseblocks:          64 (4194304 bytes, 4.0 MiB)</span>
+<span class="go">Minimum input/output unit size: 1 byte</span>
+<span class="go">Sub-page size:                  1 byte</span>
+<span class="go">Character device major/minor:   90:0</span>
+<span class="go">Bad blocks are allowed:         false</span>
+<span class="go">Device is writable:             true</span>
+</pre></div>
+
+</div>
+<div class="admonition summary">
+<p class="admonition-title">SPIフラッシュ 全消去</p>
+<div class="codehilite"><pre><span></span><span class="gp"> #</span> flash_erase /dev/mtd0 <span class="m">0</span> <span class="m">0</span>
+</pre></div>
+
+</div>
+<div class="admonition summary">
+<p class="admonition-title">SPIフラッシュ U-Bootイメージの書き込み</p>
+<div class="codehilite"><pre><span></span><span class="gp"> #</span> flashcp u-boot-cubox_hynix_cubox_unified_spi.bin /dev/mtd0
+</pre></div>
+
+</div>
+<div class="admonition summary">
+<p class="admonition-title">SPIフラッシュ バックアップ</p>
+<div class="codehilite"><pre><span></span><span class="gp"> #</span> dd <span class="k">if</span><span class="o">=</span>/dev/mtd0ro <span class="nv">of</span><span class="o">=</span>spi-backup-<span class="sb">`</span>date +%Y%m%d%H%M<span class="sb">`</span>.bin <span class="nv">bs</span><span class="o">=</span><span class="m">1024</span> <span class="nv">count</span><span class="o">=</span><span class="m">832</span>
+</pre></div>
+
+</div>
+<h2 id="_8">情報源<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://web.archive.org/web/20150103192104/http://www.solid-run.com:80/archive/mw/UBoot">U-Boot - SolidRun CuBox Wiki - Internet Archive</a></li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../kernel/" title="kernel" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                kernel
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../../hyper-v/" title="linux on hyper-v" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                linux on hyper-v
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 stkchp
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+        
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/stkchp" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/stkchp" class="md-footer-social__link fa fa-twitter"></a>
+    
+  </div>
+
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.583bbe55.js"></script>
+      
+      <script>app.initialize({version:"1.0",url:{base:"../../.."}})</script>
+      
+    
+    
+      
+    
+  </body>
+</html>
