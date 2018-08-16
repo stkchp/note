@@ -376,8 +376,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kernel-compile-install" title="kernel compile &amp; install" class="md-nav__link">
-    kernel compile &amp; install
+  <a href="#kernel-config" title="kernel config" class="md-nav__link">
+    kernel config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-compile" title="kernel compile" class="md-nav__link">
+    kernel compile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-install" title="kernel install" class="md-nav__link">
+    kernel install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="情報源" class="md-nav__link">
+    情報源
   </a>
   
 </li>
@@ -472,8 +493,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#kernel-compile-install" title="kernel compile &amp; install" class="md-nav__link">
-    kernel compile &amp; install
+  <a href="#kernel-config" title="kernel config" class="md-nav__link">
+    kernel config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-compile" title="kernel compile" class="md-nav__link">
+    kernel compile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kernel-install" title="kernel install" class="md-nav__link">
+    kernel install
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="情報源" class="md-nav__link">
+    情報源
   </a>
   
 </li>
@@ -503,11 +545,34 @@
 <p class="admonition-title">Note</p>
 <p>4.19系でもしかしたらHMDI系のサポートが入るかもしれない。</p>
 </div>
-<h2 id="kernel-compile-install">kernel compile &amp; install<a class="headerlink" href="#kernel-compile-install" title="Permanent link">&para;</a></h2>
-<p>基本的な部分は同じ。</p>
+<h2 id="kernel-config">kernel config<a class="headerlink" href="#kernel-config" title="Permanent link">&para;</a></h2>
+<p>ncursesを使った新しい設定画面を使う場合は以下のコマンドで設定を行う。</p>
 <div class="codehilite"><pre><span></span><span class="gp"> $</span> make nconfig
-<span class="gp"> $</span> make
-<span class="gp"> $</span> make modules_install
+</pre></div>
+
+<p>ncursesの古い設定画面の場合は以下のコマンド。</p>
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> make menuconfig
+</pre></div>
+
+<div class="admonition info">
+<p class="admonition-title">arm/arm64系のdeviceに必要なmoduleについて</p>
+<p>基本的に、arch/arm*/boot/dts/配下のデバイスツリーファイルに記載されているmodule系を有効にすればよい。
+例として、<a href="https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/dove-cubox.dts">dove-cubox.dts</a>の中には<code>"silabs,si5351a-msop"</code>の記載があり、<a href="https://livegrep.com/search/linux">livegrep</a>で検索すると
+<code>Silicon Labs Si5351A/B/C clock generator driver</code>を有効にすればよいことがわかる。</p>
+</div>
+<p>有効にすべきポイントは以下の通り。</p>
+<div class="codehilite"><pre><span></span>TODO: 有効にすべきポイントを書く
+TODO: sampleのkernel configファイルを晒す
+</pre></div>
+
+<h2 id="kernel-compile">kernel compile<a class="headerlink" href="#kernel-compile" title="Permanent link">&para;</a></h2>
+<p>CPU数に応じて<code>-j2</code>オプションを増減させる。</p>
+<div class="codehilite"><pre><span></span><span class="gp"> $</span> make -j2
+</pre></div>
+
+<h2 id="kernel-install">kernel install<a class="headerlink" href="#kernel-install" title="Permanent link">&para;</a></h2>
+<p>modulesのinstallは通常と変わらず。</p>
+<div class="codehilite"><pre><span></span> $ make modules_install
 </pre></div>
 
 <p>armのkernelはdevice-treeをロードすることで特定の機器のmodule類を初期化することができる。
@@ -541,6 +606,12 @@ bootm
 <p><code>boot.txt</code> を <code>boot.scr</code>に変換する。</p>
 <div class="codehilite"><pre><span></span><span class="gp"> #</span> mkimage -A arm -O linux -T script -C none -n <span class="s2">&quot;uBoot commands&quot;</span> -d boot.txt boot.scr
 </pre></div>
+
+<h2 id="_1">情報源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://git.arm.linux.org.uk/cgit/linux-arm.git/">index : linux-arm.git</a></li>
+<li><a href="http://archive.armlinux.org.uk/lurker/list/linux-arm-kernel.html">Linux-ARM Kernel</a></li>
+</ul>
                 
                   
                 
